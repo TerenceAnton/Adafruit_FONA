@@ -30,8 +30,8 @@ Adafruit_FONA::Adafruit_FONA(int8_t rst)
   apnpassword = 0;
   mySerial = 0;
   httpsredirect = false;
-  useragent = F("FONA");
-  ok_reply = F("OK");
+  useragent = (FONAFlashStringPtr)F("FONA");
+  ok_reply = (FONAFlashStringPtr)F("OK");
 }
 
 uint8_t Adafruit_FONA::type(void) {
