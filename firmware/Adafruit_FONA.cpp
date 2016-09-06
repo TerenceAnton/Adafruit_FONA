@@ -1491,13 +1491,6 @@ boolean Adafruit_FONA::HTTP_para_end(boolean quoted) {
 }
 
 boolean Adafruit_FONA::HTTP_para(FONAFlashStringPtr parameter,
-                                 const char *value) {
-  HTTP_para_start(parameter, true);
-  mySerial->print(value);
-  return HTTP_para_end(true);
-}
-
-boolean Adafruit_FONA::HTTP_para(FONAFlashStringPtr parameter,
                                  FONAFlashStringPtr value) {
   HTTP_para_start(parameter, true);
   mySerial->print(value);

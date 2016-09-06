@@ -20,6 +20,7 @@
 #include "FONAConfig.h"
 #include "FONAExtIncludes.h"
 #include "FONAPlatform.h"
+#include "Particle.h"
 
 
 

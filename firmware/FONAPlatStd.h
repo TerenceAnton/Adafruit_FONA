@@ -26,7 +26,6 @@
 #define ADAFRUIT_FONA_LIBRARY_SRC_INCLUDES_PLATFORM_FONAPLATSTD_H_
 
 #include "FONAConfig.h"
-#include "Particle.h"
 
 // DebugStream	sets the Stream output to use
 // for debug (only applies when ADAFRUIT_FONA_DEBUG
