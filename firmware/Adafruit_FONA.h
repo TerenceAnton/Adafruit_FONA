@@ -155,7 +155,6 @@ class Adafruit_FONA : public FONAStreamType {
   boolean HTTP_term();
   void HTTP_para_start(FONAFlashStringPtr parameter, boolean quoted = true);
   boolean HTTP_para_end(boolean quoted = true);
-  boolean HTTP_para(FONAFlashStringPtr parameter, const char *value);
   boolean HTTP_para(FONAFlashStringPtr parameter, FONAFlashStringPtr value);
   boolean HTTP_para(FONAFlashStringPtr parameter, int32_t value);
   boolean HTTP_data(uint32_t size, uint32_t maxTime=10000);
