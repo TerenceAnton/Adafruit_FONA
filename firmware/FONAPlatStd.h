@@ -41,7 +41,7 @@
 
 // a few typedefs to keep things portable
 typedef	Stream 						FONAStreamType;
-typedef const __FlashStringHelper *	FONAFlashStringPtr;
+typedef const char *	FONAFlashStringPtr;
 
 #define prog_char  					char PROGMEM
 

@@ -25,13 +25,13 @@ Adafruit_FONA::Adafruit_FONA(int8_t rst)
 {
   _rstpin = rst;
 
-  apn = (FONAFlashStringPtr)F("FONAnet");
+  apn = F("FONAnet");
   apnusername = 0;
   apnpassword = 0;
   mySerial = 0;
   httpsredirect = false;
-  useragent = (FONAFlashStringPtr)F("FONA");
-  ok_reply = (FONAFlashStringPtr)F("OK");
+  useragent = F("FONA");
+  ok_reply = F("OK");
 }
 
 uint8_t Adafruit_FONA::type(void) {
