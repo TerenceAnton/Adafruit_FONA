@@ -26,6 +26,7 @@
 #define ADAFRUIT_FONA_LIBRARY_SRC_INCLUDES_PLATFORM_FONAPLATSTD_H_
 
 #include "FONAConfig.h"
+#include "Particle.h"
 
 // DebugStream	sets the Stream output to use
 // for debug (only applies when ADAFRUIT_FONA_DEBUG
@@ -34,15 +35,15 @@
 
 #ifdef ADAFRUIT_FONA_DEBUG
 // need to do some debugging...
-#define DEBUG_PRINT(...)		DebugStream.print(__VA_ARGS__)
+#define DEBUG_PRINT(...)        DebugStream.print(__VA_ARGS__)
 #define DEBUG_PRINTLN(...)		DebugStream.println(__VA_ARGS__)
 #endif
 
 // a few typedefs to keep things portable
-typedef	Stream 						FONAStreamType;
-typedef const char *	FONAFlashStringPtr;
+typedef	Stream                 FONAStreamType;
+typedef const char *            FONAFlashStringPtr;
 
-#define prog_char  					char PROGMEM
+#define prog_char               char PROGMEM
 
 // #define prog_char_strcmp(a, b)					strcmp_P((a), (b))
 // define prog_char_strncmp(a, b, c)				strncmp_P((a), (b), (c))
