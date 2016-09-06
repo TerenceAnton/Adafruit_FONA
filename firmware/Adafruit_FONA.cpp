@@ -1384,7 +1384,7 @@ boolean Adafruit_FONA::TCPconnected(void) {
   return (strcmp(replybuffer, "STATE: CONNECT OK") == 0);
 }
 
-boolean Adafruit_FONA::TCPsend(char *packet, uint8_t len) {
+boolean Adafruit_FONA::TCPsend(const uint8_t *packet, size_t len) {
 
   DEBUG_PRINT(F("AT+CIPSEND="));
   DEBUG_PRINTLN(len);
