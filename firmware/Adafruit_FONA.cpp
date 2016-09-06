@@ -18,7 +18,7 @@
 
 #include "Adafruit_FONA.h"
 #include "Particle.h"
-
+#include <math.h>
 
 
 Adafruit_FONA::Adafruit_FONA(int8_t rst)
