@@ -1,0 +1,7 @@
+{
+  "name": "Adafruit_FONA",
+  "author": "Terence Anton Dela Fuente",
+  "license": "Unknown",
+  "version": "0.0.1",
+  "description": "Adafruit FONA for Particle Photon"
+}

@@ -17,9 +17,9 @@
 #ifndef ADAFRUIT_FONA_H
 #define ADAFRUIT_FONA_H
 
-#include "includes/FONAConfig.h"
-#include "includes/FONAExtIncludes.h"
-#include "includes/platform/FONAPlatform.h"
+#include "FONAConfig.h"
+#include "FONAExtIncludes.h"
+#include "FONAPlatform.h"
 
 
 

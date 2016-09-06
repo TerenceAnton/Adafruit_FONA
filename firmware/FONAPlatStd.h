@@ -25,20 +25,8 @@
 #ifndef ADAFRUIT_FONA_LIBRARY_SRC_INCLUDES_PLATFORM_FONAPLATSTD_H_
 #define ADAFRUIT_FONA_LIBRARY_SRC_INCLUDES_PLATFORM_FONAPLATSTD_H_
 
-#include "../FONAConfig.h"
-
-
-#if (ARDUINO >= 100)
-  #include "Arduino.h"
-  #if !defined(__SAM3X8E__) && !defined(ARDUINO_ARCH_SAMD)  // Arduino Due doesn't support     #include <SoftwareSerial.h>
-  #endif
-#else
-  #include "WProgram.h"
-  #include <NewSoftSerial.h>
-#endif
-
-#include <avr/pgmspace.h>
-
+#include "FONAConfig.h"
+#include "Particle.h"
 
 // DebugStream	sets the Stream output to use
 // for debug (only applies when ADAFRUIT_FONA_DEBUG
