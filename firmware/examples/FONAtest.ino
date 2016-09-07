@@ -27,22 +27,13 @@ the commented section below at the end of the setup() function.
 */
 #include "Adafruit_FONA.h"
 
-#define FONA_RX 2
-#define FONA_TX 3
-#define FONA_RST 4
+//Connect Fona RX Pin to Particle TX Pin
+//Connect Fona TX Pin to Particle RX Pin
+//Connect Fona RST Pin to Particle D2 Pin
+#define FONA_RST D2
 
 // this is a large buffer for replies
 char replybuffer[255];
-
-// We default to using software serial. If you want to use hardware serial
-// (because softserial isnt supported) comment out the following three lines 
-// and uncomment the HardwareSerial line
-#include <SoftwareSerial.h>
-SoftwareSerial fonaSS = SoftwareSerial(FONA_TX, FONA_RX);
-SoftwareSerial *fonaSerial = &fonaSS;
-
-// Hardware serial is also possible!
-//  HardwareSerial *fonaSerial = &Serial1;
 
 // Use this for FONA 800 and 808s
 Adafruit_FONA fona = Adafruit_FONA(FONA_RST);
@@ -54,14 +45,12 @@ uint8_t readline(char *buff, uint8_t maxbuff, uint16_t timeout = 0);
 uint8_t type;
 
 void setup() {
-  while (!Serial);
-
   Serial.begin(115200);
+  Serial1.begin(115200);
   Serial.println(F("FONA basic test"));
   Serial.println(F("Initializing....(May take 3 seconds)"));
 
-  fonaSerial->begin(4800);
-  if (! fona.begin(*fonaSerial)) {
+  if (!fona.begin(Serial1)) {
     Serial.println(F("Couldn't find FONA"));
     while (1);
   }
@@ -81,10 +70,10 @@ void setup() {
       Serial.println(F("FONA 3G (American)")); break;
     case FONA3G_E:
       Serial.println(F("FONA 3G (European)")); break;
-    default: 
+    default:
       Serial.println(F("???")); break;
   }
-  
+
   // Print module IMEI number.
   char imei[15] = {0}; // MUST use a 16 character buffer for IMEI!
   uint8_t imeiLen = fona.getIMEI(imei);
@@ -143,7 +132,7 @@ void printMenu(void) {
   Serial.println(F("[d] Delete SMS #"));
   Serial.println(F("[s] Send SMS"));
   Serial.println(F("[u] Send USSD"));
-  
+
   // Time
   Serial.println(F("[y] Enable network time sync (FONA 800 & 808)"));
   Serial.println(F("[Y] Enable NTP time sync (GPRS FONA 800 & 808)"));
@@ -166,7 +155,7 @@ void printMenu(void) {
     }
     Serial.println(F("[E] Raw NMEA out (FONA808)"));
   }
-  
+
   Serial.println(F("[S] create Serial passthru tunnel"));
   Serial.println(F("-------------------------------------"));
   Serial.println(F(""));
@@ -455,7 +444,7 @@ void loop() {
         }
         break;
       }
-      
+
     case 'h': {
         // hang up!
         if (! fona.hangUp()) {
@@ -664,7 +653,7 @@ void loop() {
         fona.getGPS(0, gpsdata, 120);
         if (type == FONA808_V1)
           Serial.println(F("Reply in format: mode,longitude,latitude,altitude,utctime(yyyymmddHHMMSS),ttff,satellites,speed,course"));
-        else 
+        else
           Serial.println(F("Reply in format: mode,fixstatus,utctime(yyyymmddHHMMSS),latitude,longitude,altitude,speed,course,fixmode,reserved1,HDOP,PDOP,VDOP,reserved2,view_satellites,used_satellites,reserved3,C/N0max,HPA,VPA"));
         Serial.println(gpsdata);
 
