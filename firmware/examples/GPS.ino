@@ -12,22 +12,12 @@
  * Licence: MIT
  *
  */
-#include "Adafruit_FONA.h"
+ #include "Adafruit_FONA/Adafruit_FONA.h"
 
-// standard pins for the shield, adjust as necessary
-#define FONA_RX 2
-#define FONA_TX 3
-#define FONA_RST 4
-
-// We default to using software serial. If you want to use hardware serial
-// (because softserial isnt supported) comment out the following three lines 
-// and uncomment the HardwareSerial line
-#include <SoftwareSerial.h>
-SoftwareSerial fonaSS = SoftwareSerial(FONA_TX, FONA_RX);
-SoftwareSerial *fonaSerial = &fonaSS;
-
-// Hardware serial is also possible!
-//  HardwareSerial *fonaSerial = &Serial1;
+ //Connect Fona RX Pin to Particle TX Pin
+ //Connect Fona TX Pin to Particle RX Pin
+ //Connect Fona RST Pin to Particle D2 Pin
+ #define FONA_RST D2
 
 Adafruit_FONA fona = Adafruit_FONA(FONA_RST);
 
@@ -37,20 +27,17 @@ Adafruit_FONA fona = Adafruit_FONA(FONA_RST);
 
 void setup() {
 
-  while (! Serial);
-
   Serial.begin(115200);
-  Serial.println(F("Adafruit FONA 808 & 3G GPS demo"));
-  Serial.println(F("Initializing FONA... (May take a few seconds)"));
+  Serial1.begin(115200);
+  Serial.println(F("FONA GPS test"));
+  Serial.println(F("Initializing....(May take 3 seconds)"));
 
-  fonaSerial->begin(4800);
-  if (! fona.begin(*fonaSerial)) {
+  if (!fona.begin(Serial1)) {
     Serial.println(F("Couldn't find FONA"));
-    while(1);
+    while (1);
   }
-  Serial.println(F("FONA is OK"));
   // Try to enable GPRS
-  
+
 
   Serial.println(F("Enabling GPS..."));
   fona.enableGPS(true);
@@ -87,7 +74,7 @@ void loop() {
   // Fona 3G doesnt have GPRSlocation :/
   if ((fona.type() == FONA3G_A) || (fona.type() == FONA3G_E))
     return;
-  // Check for network, then GPRS 
+  // Check for network, then GPRS
   Serial.println(F("Checking for Cell network..."));
   if (fona.getNetworkStatus() == 1) {
     // network & GPRS? Great! Print out the GSM location to compare
@@ -104,9 +91,8 @@ void loop() {
       fona.enableGPRS(false);
       Serial.println(F("Enabling GPRS"));
       if (!fona.enableGPRS(true)) {
-        Serial.println(F("Failed to turn GPRS on"));  
+        Serial.println(F("Failed to turn GPRS on"));
       }
     }
   }
 }
-

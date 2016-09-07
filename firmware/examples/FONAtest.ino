@@ -25,7 +25,7 @@ Open up the serial console on the Arduino at 115200 baud to interact with FONA
 Note that if you need to set a GPRS APN, username, and password scroll down to
 the commented section below at the end of the setup() function.
 */
-#include "Adafruit_FONA.h"
+#include "Adafruit_FONA/Adafruit_FONA.h"
 
 //Connect Fona RX Pin to Particle TX Pin
 //Connect Fona TX Pin to Particle RX Pin
